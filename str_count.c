@@ -10,7 +10,7 @@ typedef struct _node {
 
 #define LIST_LENGTH 8
 
-char *string = "Dog Cat Dog Cat Dog Cat Cat Dog test Dog test Cat subject test subject ";
+char *string = "Dog Cat Dog Cat Dog Cat Cat Dog test Dog test Cat subject test subject goD taC goD";
 Node_t array[100][LIST_LENGTH];
 int bitmap [100];
 
@@ -19,10 +19,11 @@ int compare_and_add (int hash, char *word, int len) {
 	int free = -1;
 
 	for (iter = 0; iter < LIST_LENGTH; iter ++) {
-		if (array[hash][iter].inited &&
-		    !memcmp(array[hash][iter].str, word, len)) {
+		if (array[hash][iter].inited) {
+		    if(!memcmp(array[hash][iter].str, word, len)) {
 			array[hash][iter].count ++;
 			return 0;
+		    }
 		} else {
 			if (free == -1) {
 				free = iter;
